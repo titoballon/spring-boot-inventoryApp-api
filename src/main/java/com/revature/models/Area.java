@@ -23,7 +23,7 @@ public class Area {
 	private String description;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", name="inventory_id")
 	private Inventory inventory;
 
 	public Area() {

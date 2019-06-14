@@ -21,7 +21,7 @@ public class Item {
 	private String item;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", name="area_id")
 	private Area area;
 
 	public Item() {

@@ -19,15 +19,15 @@ public class Permission {
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", name="user_id")
 	private User user;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", name="inventory_id")
 	private Inventory inventory;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "id", name="level_id")
 	private Level level;
 
 	public Permission() {

@@ -1,0 +1,69 @@
+package com.revature.controllers;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.revature.models.Area;
+import com.revature.services.AreaService;
+
+@RestController
+@RequestMapping("areas")
+public class AreaController {
+	
+	private AreaService areaService;
+
+	public AreaController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Autowired
+	public AreaController(AreaService a) {
+		this.areaService = a;
+	}
+	
+	@GetMapping
+	public List<Area> findAll(){
+		return areaService.findAll();
+	}
+	
+	@GetMapping("area/{area}")
+	public List<Area> findByArea(@PathVariable String area) {
+		return areaService.findByArea(area);
+	}
+	
+	@GetMapping("inventory/{inventory}")
+	public List<Area> findByInventory(@PathVariable String inventory) {
+		return areaService.findByInventory(inventory);
+	}
+	
+	@GetMapping("{id}")
+	public Area findById(@PathVariable Integer id) {
+		return areaService.findById(id);
+	}
+	
+	@PostMapping
+	public Area save(@Valid Area area) {
+		return areaService.save(area);
+	}
+	
+	@DeleteMapping
+	public void delete(@Valid Area area) {
+		areaService.delete(area);
+	}
+	
+	@PatchMapping
+	public Area updateArea(@Valid Area area) {
+		return areaService.save(area);		
+	}
+}
