@@ -55,7 +55,7 @@ public class PermissionServiceImpl implements PermissionService{
 	}
 
 	@Override
-	public List<Permission> findByUser(String username) {
+	public List<Permission> findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return permissionRepository.findByUserUsername(username);
 	}

@@ -38,9 +38,9 @@ public class PermissionController {
 		return permissionService.findAll();
 	}
 	
-	@GetMapping("user/{user}")
-	public List<Permission> findByUser(@PathVariable String user) {
-		return permissionService.findByUser(user);
+	@GetMapping("username/{username}")
+	public List<Permission> findByUsername(@PathVariable String username) {
+		return permissionService.findByUsername(username);
 	}
 	
 	@GetMapping("inventory/{inventory}")

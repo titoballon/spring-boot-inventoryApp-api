@@ -1,9 +1,6 @@
 package com.revature.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,12 +29,10 @@ public class Area {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Area(int id, String area, String description, Inventory inventory) {
+	public Area(String area, String description) {
 		super();
-		this.id = id;
 		this.area = area;
 		this.description = description;
-		this.inventory = inventory;
 	}
 
 	public int getId() {
@@ -115,5 +110,5 @@ public class Area {
 	@Override
 	public String toString() {
 		return "Area [id=" + id + ", area=" + area + ", description=" + description + ", inventory=" + inventory + "]";
-	}	
+	}
 }

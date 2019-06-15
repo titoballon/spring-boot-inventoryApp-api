@@ -1,13 +1,9 @@
 package com.revature.models;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,18 +17,15 @@ public class Inventory {
 	private String inventory;
 	
 	private String description;
-	
-	@OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
-    private Set<Inventory> inventories;
 
 	public Inventory() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Inventory(int id, String inventory, String description) {
+	public Inventory(String inventory, String description) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.inventory = inventory;
 		this.description = description;
 	}
@@ -98,8 +91,5 @@ public class Inventory {
 	@Override
 	public String toString() {
 		return "Inventory [id=" + id + ", inventory=" + inventory + ", description=" + description + "]";
-	}
-	
-	
-
+	}	
 }

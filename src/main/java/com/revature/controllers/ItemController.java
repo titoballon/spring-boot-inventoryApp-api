@@ -40,7 +40,7 @@ public class ItemController {
 	
 	@GetMapping("item/{item}")
 	public List<Item> findByItem(@PathVariable String item) {
-		return itemService.findByArea(item);
+		return itemService.findByItem(item);
 	}
 	
 	@GetMapping("area/{area}")

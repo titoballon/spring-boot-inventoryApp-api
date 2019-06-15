@@ -65,6 +65,6 @@ public class AreaController {
 	
 	@PatchMapping
 	public Area updateArea(@Valid @RequestBody Area area) {
-		return areaService.save(area);		
+		return areaService.save(area);	
 	}
 }

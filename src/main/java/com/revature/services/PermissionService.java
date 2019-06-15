@@ -14,7 +14,7 @@ public interface PermissionService {
 	
 	public void delete(Permission permission);
 	
-	public List<Permission> findByUser(String username);
+	public List<Permission> findByUsername(String username);
 	
 	public List<Permission> findByInventory(String inventory);
 	

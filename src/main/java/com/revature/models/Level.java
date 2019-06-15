@@ -21,9 +21,8 @@ public class Level {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Level(int id, String level) {
+	public Level(String level) {
 		super();
-		this.id = id;
 		this.level = level;
 	}
 
