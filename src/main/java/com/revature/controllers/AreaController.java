@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,17 +54,17 @@ public class AreaController {
 	}
 	
 	@PostMapping
-	public Area save(@Valid Area area) {
+	public Area save(@Valid @RequestBody Area area) {
 		return areaService.save(area);
 	}
 	
 	@DeleteMapping
-	public void delete(@Valid Area area) {
+	public void delete(@Valid @RequestBody Area area) {
 		areaService.delete(area);
 	}
 	
 	@PatchMapping
-	public Area updateArea(@Valid Area area) {
+	public Area updateArea(@Valid @RequestBody Area area) {
 		return areaService.save(area);		
 	}
 }

@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class Area {
 	
 	private String description;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(referencedColumnName = "id", name="inventory_id")
+	@ManyToOne
+	@JoinColumn(name="inventory_id")
 	private Inventory inventory;
 
 	public Area() {
@@ -114,5 +115,5 @@ public class Area {
 	@Override
 	public String toString() {
 		return "Area [id=" + id + ", area=" + area + ", description=" + description + ", inventory=" + inventory + "]";
-	}
+	}	
 }

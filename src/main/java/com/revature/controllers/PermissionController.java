@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,17 +60,17 @@ public class PermissionController {
 	
 
 	@PostMapping
-	public Permission save(@Valid Permission permission) {
+	public Permission save(@Valid @RequestBody Permission permission) {
 		return permissionService.save(permission);
 	}
 	
 	@DeleteMapping
-	public void delete(@Valid Permission permission) {
+	public void delete(@Valid @RequestBody Permission permission) {
 		permissionService.delete(permission);
 	}
 	
 	@PatchMapping
-	public Permission updatePermission(@Valid Permission permission) {
+	public Permission updatePermission(@Valid @RequestBody Permission permission) {
 		return permissionService.save(permission);		
 	}
 }
