@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.revature.exceptions.ApiException;
 import com.revature.models.Area;
 import com.revature.repositories.AreaRepository;
 
@@ -22,19 +24,28 @@ public class AreaServiceImpl implements AreaService{
 	@Override
 	public List<Area> findAll() {
 		// TODO Auto-generated method stub
-		return areaRepository.findAll();
+		List<Area> allAreas = areaRepository.findAll();
+		if(allAreas.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No areas found");
+		return allAreas;
 	}
 
 	@Override
 	public List<Area> findByArea(String area) {
 		// TODO Auto-generated method stub
-		return areaRepository.findByArea(area);
+		List<Area> areas = areaRepository.findByArea(area);
+		if(areas.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No areas found");
+		return areas;
 	}
 	
 	@Override
 	public List<Area> findByInventory(String inventory) {
 		// TODO Auto-generated method stub
-		return areaRepository.findByInventoryInventory(inventory);
+		List<Area> areas = areaRepository.findByInventoryInventory(inventory);
+		if(areas.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No areas found");
+		return areas;
 	}
 
 	@Override
@@ -44,7 +55,7 @@ public class AreaServiceImpl implements AreaService{
 		if(res.isPresent()) {
 			return res.get();
 		} else {
-			return null;
+			throw new ApiException(HttpStatus.NOT_FOUND, "area not found");
 		}
 	}
 
@@ -59,10 +70,4 @@ public class AreaServiceImpl implements AreaService{
 		// TODO Auto-generated method stub
 		areaRepository.delete(area);
 	}
-
-//	@Override
-//	public Area updateArea(Area area) {
-//		// TODO Auto-generated method stub
-//		return areaRepository.save(area);
-//	}
 }

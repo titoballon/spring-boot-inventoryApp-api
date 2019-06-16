@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.revature.exceptions.ApiException;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 
@@ -22,7 +24,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> findByUsername(String username) {
 		// TODO Auto-generated method stub
-		return userRepository.findByUsername(username);
+		List<User> users = userRepository.findByUsername(username);
+		if(users.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No users found");
+		return users;
 	}
 
 	@Override
@@ -32,18 +37,21 @@ public class UserServiceImpl implements UserService{
 		if(res.isPresent()) {
 			return res.get();
 		} else {
-			return null;
+			throw new ApiException(HttpStatus.NOT_FOUND, "user not found");
 		}
 	}
 
 	@Override
 	public List<User> findAll() {
 		// TODO Auto-generated method stub
-		return userRepository.findAll();
+		List<User> allUsers = userRepository.findAll();
+		if(allUsers.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No users found");
+		return allUsers;
 	}
 
 	@Override
-	public User save(User user) {
+	public User saveUser(User user) {
 		// TODO Auto-generated method stub
 		return userRepository.save(user);
 	}

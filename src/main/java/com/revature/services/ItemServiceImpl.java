@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.revature.exceptions.ApiException;
 import com.revature.models.Item;
 import com.revature.repositories.ItemRepository;
 
@@ -22,19 +24,28 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<Item> findAll() {
 		// TODO Auto-generated method stub
-		return itemRepository.findAll();
+		List<Item> allItems = itemRepository.findAll();
+		if(allItems.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No items found");
+		return allItems;
 	}
 
 	@Override
 	public List<Item> findByItem(String item) {
 		// TODO Auto-generated method stub
-		return itemRepository.findByItem(item);
+		List<Item> items = itemRepository.findByItem(item);
+		if(items.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No items found");
+		return items;
 	}
 
 	@Override
 	public List<Item> findByArea(String area) {
 		// TODO Auto-generated method stub
-		return itemRepository.findByAreaArea(area);
+		List<Item> items = itemRepository.findByAreaArea(area);
+		if(items.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No items found");
+		return items;
 	}
 
 	@Override
@@ -44,7 +55,7 @@ public class ItemServiceImpl implements ItemService{
 		if(res.isPresent()) {
 			return res.get();
 		} else {
-			return null;
+			throw new ApiException(HttpStatus.NOT_FOUND, "item not found");
 		}
 	}
 

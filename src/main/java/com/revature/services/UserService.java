@@ -12,7 +12,7 @@ public interface UserService {
 	
 	public List<User> findAll();
 	
-	public User save(User user);
+	public User saveUser(User user);
 	
 	public void delete(User user);
 }

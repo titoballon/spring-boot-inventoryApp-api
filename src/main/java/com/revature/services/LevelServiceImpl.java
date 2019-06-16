@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.revature.exceptions.ApiException;
 import com.revature.models.Level;
 import com.revature.repositories.LevelRepository;
 
@@ -22,7 +24,10 @@ public class LevelServiceImpl implements LevelService{
 	@Override
 	public List<Level> findByLevel(String level) {
 		// TODO Auto-generated method stub
-		return levelRepository.findByLevel(level);
+		List<Level> levels = levelRepository.findByLevel(level);
+		if(levels.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No levels found");
+		return levels;
 	}
 
 	@Override
@@ -32,14 +37,17 @@ public class LevelServiceImpl implements LevelService{
 		if(res.isPresent()) {
 			return res.get();
 		} else {
-			return null;
+			throw new ApiException(HttpStatus.NOT_FOUND, "level not found");
 		}
 	}
 
 	@Override
 	public List<Level> findAll() {
 		// TODO Auto-generated method stub
-		return levelRepository.findAll();
+		List<Level> allLevels = levelRepository.findAll();
+		if(allLevels.isEmpty())
+			throw new ApiException(HttpStatus.NOT_FOUND, "No levels found");
+		return allLevels;
 	}
 
 	@Override
