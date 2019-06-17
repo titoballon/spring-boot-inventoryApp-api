@@ -21,7 +21,7 @@ public class DatabaseLoader implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 			
-		//userdao.save(new User("titoballon","pass","my email","ernesto","ballon",new String[] {"ROLE_USER"}));
+		//userdao.save(new User("hermes","pass","my email","ernesto","ballon",new String[] {"ROLE_USER"}));
 		System.out.println("this is running");
 	}
 
