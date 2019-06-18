@@ -58,6 +58,12 @@ public class AreaServiceImpl implements AreaService{
 			throw new ApiException(HttpStatus.NOT_FOUND, "area not found");
 		}
 	}
+	
+	@Override
+	public List<Area> findByInventoryId(Integer id) {
+		// TODO Auto-generated method stub
+		return areaRepository.findByInventoryId(id);
+	}
 
 	@Override
 	public Area save(Area area) {

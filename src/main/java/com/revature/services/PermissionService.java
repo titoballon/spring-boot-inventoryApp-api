@@ -20,5 +20,7 @@ public interface PermissionService {
 	
 	public List<Permission> findByLevel(String level);
 	
+	public List<Permission> findByUserId(Integer id);
+	
 	//public Permission updatePermission(Permission permission);
 }

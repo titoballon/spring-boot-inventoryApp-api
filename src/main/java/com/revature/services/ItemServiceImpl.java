@@ -58,6 +58,12 @@ public class ItemServiceImpl implements ItemService{
 			throw new ApiException(HttpStatus.NOT_FOUND, "item not found");
 		}
 	}
+	
+	@Override
+	public List<Item> findByAreaId(Integer id) {
+		// TODO Auto-generated method stub
+		return itemRepository.findByAreaId(id);
+	}
 
 	@Override
 	public Item save(Item item) {

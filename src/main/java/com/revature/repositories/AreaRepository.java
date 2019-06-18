@@ -11,4 +11,6 @@ public interface AreaRepository extends JpaRepository<Area, Integer>{
 	public List<Area> findByArea(String area);
 	
 	public List<Area> findByInventoryInventory(String inventory);
+	
+	public List<Area> findByInventoryId(Integer id);
 }
