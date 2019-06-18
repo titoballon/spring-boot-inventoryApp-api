@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 import com.revature.authentication.DetailsService;
 import com.revature.authentication.jwtAuthorizationFilter;
@@ -37,9 +38,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
+		http	.cors().disable()
 				.authorizeRequests()
-				.antMatchers("/api/user/login").permitAll()
+				.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+				.antMatchers("/api/*").permitAll()
 				.anyRequest().authenticated()
 				.and()
 					.httpBasic()
