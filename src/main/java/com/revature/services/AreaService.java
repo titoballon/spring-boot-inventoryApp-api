@@ -17,4 +17,6 @@ public interface AreaService {
 	public Area save(Area area);
 	
 	public void delete(Area area);
+	
+	public List<Area> findByInventoryId(Integer id);
 }

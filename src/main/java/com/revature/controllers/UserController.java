@@ -51,12 +51,12 @@ public class UserController {
 	
 	@PostMapping
 	public User save(@Valid @RequestBody User user) {
-		return userService.saveUser(user);
+		return userService.save(user);
 	}
 	
 	@PatchMapping
 	public User updateUser(@Valid @RequestBody User user) {
-		return userService.saveUser(user);
+		return userService.save(user);
 	}
 	
 	@DeleteMapping
