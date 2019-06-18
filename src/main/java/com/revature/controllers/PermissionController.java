@@ -58,6 +58,11 @@ public class PermissionController {
 		return permissionService.findById(id);
 	}
 	
+	@GetMapping("user/{id}")
+	public List<Permission> findByUserId(@PathVariable Integer id) {
+		return permissionService.findByUserId(id);
+	}
+	
 
 	@PostMapping
 	public Permission save(@Valid @RequestBody Permission permission) {

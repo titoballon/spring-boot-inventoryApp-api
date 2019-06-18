@@ -53,6 +53,11 @@ public class AreaController {
 		return areaService.findById(id);
 	}
 	
+	@GetMapping("inventoryid/{id}")
+	public List<Area> findByInventoryId(@PathVariable Integer id) {
+		return areaService.findByInventoryId(id);
+	}
+	
 	@PostMapping
 	public Area save(@Valid @RequestBody Area area) {
 		return areaService.save(area);

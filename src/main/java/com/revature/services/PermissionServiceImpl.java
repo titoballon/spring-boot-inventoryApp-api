@@ -40,6 +40,12 @@ public class PermissionServiceImpl implements PermissionService{
 			throw new ApiException(HttpStatus.NOT_FOUND, "permission not found");
 		}
 	}
+	
+	@Override
+	public List<Permission> findByUserId(Integer id) {
+		// TODO Auto-generated method stub
+		return permissionRepository.findByUserId(id);
+	}
 
 	@Override
 	public Permission save(Permission permission) {
