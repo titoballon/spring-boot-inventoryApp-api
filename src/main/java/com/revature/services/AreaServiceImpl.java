@@ -31,18 +31,18 @@ public class AreaServiceImpl implements AreaService{
 	}
 
 	@Override
-	public List<Area> findByArea(String area) {
+	public List<Area> findByName(String area) {
 		// TODO Auto-generated method stub
-		List<Area> areas = areaRepository.findByArea(area);
+		List<Area> areas = areaRepository.findByName(area);
 		if(areas.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "No areas found");
 		return areas;
 	}
 	
 	@Override
-	public List<Area> findByInventory(String inventory) {
+	public List<Area> findByInventoryName(String inventory) {
 		// TODO Auto-generated method stub
-		List<Area> areas = areaRepository.findByInventoryInventory(inventory);
+		List<Area> areas = areaRepository.findByInventoryName(inventory);
 		if(areas.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "No areas found");
 		return areas;
@@ -76,4 +76,18 @@ public class AreaServiceImpl implements AreaService{
 		// TODO Auto-generated method stub
 		areaRepository.delete(area);
 	}
+
+	@Override
+	public Area getOne(Integer id) {
+		// TODO Auto-generated method stub
+		return areaRepository.getOne(id);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		areaRepository.deleteById(id);
+	}
+
+
 }

@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Area;
 import com.revature.models.Item;
 import com.revature.services.ItemService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("items")
+@RequestMapping("inventories/areas/items/")
 public class ItemController {
 	
 	private ItemService itemService;
@@ -39,8 +41,8 @@ public class ItemController {
 	}
 	
 	@GetMapping("item/{item}")
-	public List<Item> findByItem(@PathVariable String item) {
-		return itemService.findByItem(item);
+	public List<Item> findByName(@PathVariable String item) {
+		return itemService.findByName(item);
 	}
 	
 	@GetMapping("area/{area}")
@@ -53,10 +55,15 @@ public class ItemController {
 		return itemService.findById(id);
 	}
 	
-	@GetMapping("areaid/{id}")
-	public List<Item> findByAreaId(@PathVariable Integer id) {
-		return itemService.findByAreaId(id);
+	@GetMapping("area/{areaId}")
+	public List<Item> findByAreaId(@PathVariable Integer areaId) {
+		return itemService.findByAreaId(areaId);
 	}
+	
+//	@GetMapping("areaid/{id}")
+//	public List<Item> findByAreaId(@PathVariable Integer id) {
+//		return itemService.findByAreaId(id);
+//	}
 	
 	@PostMapping
 	public Item save(@Valid @RequestBody Item item) {
@@ -68,8 +75,15 @@ public class ItemController {
 		itemService.delete(item);
 	}
 	
+	@DeleteMapping("{itemId}")
+	public void delete(@PathVariable Integer itemId) {
+		itemService.deleteById(itemId);
+	}
+	
 	@PatchMapping
 	public Item updateItem(@Valid @RequestBody Item item) {
-		return itemService.save(item);		
+		Item existingItem = itemService.getOne(item.getId());
+		NullPropertiesHandler.myCopyProperties(item, existingItem);
+		return itemService.save(existingItem);		
 	}
 }

@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Area;
 import com.revature.services.AreaService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("areas")
+@RequestMapping("inventories/areas")
 public class AreaController {
 	
 	private AreaService areaService;
@@ -39,13 +40,13 @@ public class AreaController {
 	}
 	
 	@GetMapping("area/{area}")
-	public List<Area> findByArea(@PathVariable String area) {
-		return areaService.findByArea(area);
+	public List<Area> findByName(@PathVariable String area) {
+		return areaService.findByName(area);
 	}
 	
 	@GetMapping("inventory/{inventory}")
-	public List<Area> findByInventory(@PathVariable String inventory) {
-		return areaService.findByInventory(inventory);
+	public List<Area> findByInventoryName(@PathVariable String inventory) {
+		return areaService.findByInventoryName(inventory);
 	}
 	
 	@GetMapping("{id}")
@@ -53,10 +54,10 @@ public class AreaController {
 		return areaService.findById(id);
 	}
 	
-	@GetMapping("inventoryid/{id}")
-	public List<Area> findByInventoryId(@PathVariable Integer id) {
-		return areaService.findByInventoryId(id);
-	}
+//	@GetMapping("inventoryid/{id}")
+//	public List<Area> findByInventoryId(@PathVariable Integer id) {
+//		return areaService.findByInventoryId(id);
+//	}
 	
 	@PostMapping
 	public Area save(@Valid @RequestBody Area area) {
@@ -68,8 +69,20 @@ public class AreaController {
 		areaService.delete(area);
 	}
 	
+	@DeleteMapping("{areaId}")
+	public void delete(@PathVariable Integer areaId) {
+		areaService.deleteById(areaId);
+	}
+	
 	@PatchMapping
-	public Area updateArea(@Valid @RequestBody Area area) {
-		return areaService.save(area);	
+	public Area updateArea(@Valid @RequestBody Area area) {		
+		Area existingArea = areaService.getOne(area.getId());
+		NullPropertiesHandler.myCopyProperties(area, existingArea);
+		return areaService.save(existingArea);	
+	}
+	
+	@GetMapping("inventory/{inventoryId}")
+	public List<Area> findByInventoryId(@PathVariable Integer inventoryId) {
+		return areaService.findByInventoryId(inventoryId);
 	}
 }

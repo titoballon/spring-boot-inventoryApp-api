@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Area;
 import com.revature.models.Inventory;
 import com.revature.services.InventoryService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
 @RequestMapping("inventories")
@@ -39,14 +41,14 @@ public class InventoryController {
 	}
 	
 	@GetMapping("inventory/{inventory}")
-	public List<Inventory> findByInventory(@PathVariable String inventory) {
-		return inventoryService.findByInventory(inventory);
+	public List<Inventory> findByName(@PathVariable String inventory) {
+		return inventoryService.findByName(inventory);
 	}
 	
-	@GetMapping("{id}")
-	public Inventory findById(@PathVariable Integer id) {
-		return inventoryService.findById(id);
-	}
+//	@GetMapping("{id}")
+//	public Inventory findById(@PathVariable Integer id) {
+//		return inventoryService.findById(id);
+//	}
 	
 	@PostMapping
 	public Inventory save(@Valid @RequestBody Inventory inventory) {
@@ -58,10 +60,26 @@ public class InventoryController {
 		inventoryService.delete(inventory);
 	}
 	
-	@PatchMapping
-	public Inventory updateArea(@Valid @RequestBody Inventory inventory) {
-		return inventoryService.save(inventory);		
+	@DeleteMapping("{inventoryId}")
+	public void delete(@PathVariable Integer inventoryId) {
+		inventoryService.deleteById(inventoryId);
 	}
 	
+	@PatchMapping
+	public Inventory updateInventory(@Valid @RequestBody Inventory inventory) {
+		Inventory existingInventory = inventoryService.getOne(inventory.getId());
+		NullPropertiesHandler.myCopyProperties(inventory, existingInventory);
+		return inventoryService.save(existingInventory);		
+	}
+	
+	@GetMapping("{inventoryId}")
+	public Inventory findById(@PathVariable Integer inventoryId) {
+		return inventoryService.findById(inventoryId);
+	}
+	
+	@GetMapping("users/{userId}")
+	public List<Inventory> findInventoryByUserId(@PathVariable Integer userId) {
+		return inventoryService.findInventoryByUserId(userId);
+	}
 	
 }

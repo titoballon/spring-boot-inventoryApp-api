@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Area;
 import com.revature.models.Permission;
 import com.revature.services.PermissionService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
 @RequestMapping("permissions")
@@ -44,8 +46,8 @@ public class PermissionController {
 	}
 	
 	@GetMapping("inventory/{inventory}")
-	public List<Permission> findByInventory(@PathVariable String inventory) {
-		return permissionService.findByInventory(inventory);
+	public List<Permission> findByInventoryName(@PathVariable String inventory) {
+		return permissionService.findByInventoryName(inventory);
 	}
 	
 	@GetMapping("level/{level}")
@@ -53,14 +55,24 @@ public class PermissionController {
 		return permissionService.findByLevel(level);
 	}
 	
-	@GetMapping("{id}")
-	public Permission findById(@PathVariable Integer id) {
-		return permissionService.findById(id);
+//	@GetMapping("{id}")
+//	public Permission findById(@PathVariable Integer id) {
+//		return permissionService.findById(id);
+//	}
+	
+	@GetMapping("{permissionId}")
+	public Permission findById(@PathVariable Integer permissionId) {
+		return permissionService.findById(permissionId);
 	}
 	
-	@GetMapping("user/{id}")
-	public List<Permission> findByUserId(@PathVariable Integer id) {
-		return permissionService.findByUserId(id);
+//	@GetMapping("user/{id}")
+//	public List<Permission> findByUserId(@PathVariable Integer id) {
+//		return permissionService.findByUserId(id);
+//	}
+	
+	@GetMapping("user/{userId}")
+	public List<Permission> findByUserId(@PathVariable Integer userId) {
+		return permissionService.findByUserId(userId);
 	}
 	
 
@@ -74,8 +86,15 @@ public class PermissionController {
 		permissionService.delete(permission);
 	}
 	
+	@DeleteMapping("{permissionId}")
+	public void delete(@PathVariable Integer permissionId) {
+		permissionService.deleteById(permissionId);
+	}
+	
 	@PatchMapping
 	public Permission updatePermission(@Valid @RequestBody Permission permission) {
-		return permissionService.save(permission);		
+		Permission existingPermission = permissionService.getOne(permission.getId());
+		NullPropertiesHandler.myCopyProperties(permission, existingPermission);
+		return permissionService.save(existingPermission);	
 	}
 }

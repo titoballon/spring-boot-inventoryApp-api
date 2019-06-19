@@ -31,9 +31,9 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public List<Item> findByItem(String item) {
+	public List<Item> findByName(String item) {
 		// TODO Auto-generated method stub
-		List<Item> items = itemRepository.findByItem(item);
+		List<Item> items = itemRepository.findByName(item);
 		if(items.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "No items found");
 		return items;
@@ -42,7 +42,7 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<Item> findByArea(String area) {
 		// TODO Auto-generated method stub
-		List<Item> items = itemRepository.findByAreaArea(area);
+		List<Item> items = itemRepository.findByAreaName(area);
 		if(items.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "No items found");
 		return items;
@@ -75,6 +75,18 @@ public class ItemServiceImpl implements ItemService{
 	public void delete(Item item) {
 		// TODO Auto-generated method stub
 		itemRepository.delete(item);
+	}
+
+	@Override
+	public Item getOne(Integer id) {
+		// TODO Auto-generated method stub
+		return itemRepository.getOne(id);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		itemRepository.deleteById(id);
 	}
 
 }

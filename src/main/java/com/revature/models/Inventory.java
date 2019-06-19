@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,8 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String inventory;
+	@Column(name="inventory")
+	private String name;
 	
 	private String description;
 
@@ -23,10 +25,9 @@ public class Inventory {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Inventory(String inventory, String description) {
+	public Inventory(String name, String description) {
 		super();
-		//this.id = id;
-		this.inventory = inventory;
+		this.name = name;
 		this.description = description;
 	}
 
@@ -38,12 +39,12 @@ public class Inventory {
 		this.id = id;
 	}
 
-	public String getInventory() {
-		return inventory;
+	public String getName() {
+		return name;
 	}
 
-	public void setInventory(String inventory) {
-		this.inventory = inventory;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -60,7 +61,7 @@ public class Inventory {
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((inventory == null) ? 0 : inventory.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -80,16 +81,16 @@ public class Inventory {
 			return false;
 		if (id != other.id)
 			return false;
-		if (inventory == null) {
-			if (other.inventory != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!inventory.equals(other.inventory))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Inventory [id=" + id + ", inventory=" + inventory + ", description=" + description + "]";
-	}	
+		return "Inventory [id=" + id + ", name=" + name + ", description=" + description + "]";
+	}
 }

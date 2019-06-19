@@ -6,38 +6,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Entity
 @Table(name = "users")
 public class User {
-	
+	//public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(); 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private String username;
-	
-	private String password;
-	
 	private String email;
-	
 	private String firstname;
-	
 	private String lastname;
 	
-	public User() {
+	//@JsonIgnore
+	private String password;
+	
+//	@JsonIgnore
+//	private String[] roles;
+//	
+//	
+//	public String[] getRoles() {
+//		return roles;
+//	}
+//	public void setRoles(String[] roles) {
+//		this.roles = roles;
+//	}
+	protected User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String username, String password, String email, String firstname, String lastname) {
-		super();
+	public User( String username,String password, String email, String firstname, String lastname, 
+			String[] roles) {
+		this();
 		this.username = username;
-		this.password = password;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.password = password;
+		//this.password = PASSWORD_ENCODER.encode(password);
+		//setPassword(password);
+		//this.roles = roles;
 	}
-
 	public int getId() {
 		return id;
 	}
@@ -59,6 +73,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
+		//this.password = PASSWORD_ENCODER.encode(password);
 		this.password = password;
 	}
 

@@ -61,4 +61,10 @@ public class LevelServiceImpl implements LevelService{
 		// TODO Auto-generated method stub
 		return levelRepository.save(level);
 	}
+
+	@Override
+	public Level getOne(Integer id) {
+		// TODO Auto-generated method stub
+		return levelRepository.getOne(id);
+	}
 }

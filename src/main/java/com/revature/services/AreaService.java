@@ -8,15 +8,21 @@ public interface AreaService {
 	
 	public List<Area> findAll();
 	
-	public List<Area> findByArea(String area);
+	public List<Area> findByName(String area);
 	
-	public List<Area> findByInventory(String inventory);
+	public List<Area> findByInventoryName(String inventory);
 	
 	public Area findById(Integer id);
+	
+	public void deleteById(Integer id);
 	
 	public Area save(Area area);
 	
 	public void delete(Area area);
 	
 	public List<Area> findByInventoryId(Integer id);
+	
+	//public Area findOne(Area area);
+	
+	public Area getOne(Integer id);
 }

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Area;
 import com.revature.models.Level;
 import com.revature.services.LevelService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
 @RequestMapping("levels")
@@ -59,7 +61,9 @@ public class LevelController {
 	}
 	
 	@PatchMapping
-	public Level updateArea(@Valid @RequestBody Level level) {
-		return levelService.save(level);		
+	public Level updateLevel(@Valid @RequestBody Level level) {
+		Level existingLevel = levelService.getOne(level.getId());
+		NullPropertiesHandler.myCopyProperties(level, existingLevel);
+		return levelService.save(existingLevel);		
 	}
 }

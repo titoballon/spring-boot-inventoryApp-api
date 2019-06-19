@@ -10,13 +10,17 @@ public interface PermissionService {
 	
 	public Permission findById(Integer id);
 	
+	public Permission getOne(Integer id);
+	
 	public Permission save(Permission permission);
 	
 	public void delete(Permission permission);
 	
+	public void deleteById(Integer id);
+	
 	public List<Permission> findByUsername(String username);
 	
-	public List<Permission> findByInventory(String inventory);
+	public List<Permission> findByInventoryName(String inventory);
 	
 	public List<Permission> findByLevel(String level);
 	

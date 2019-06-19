@@ -10,6 +10,8 @@ public interface LevelService {
 	
 	public Level findById(Integer id);
 	
+	public Level getOne(Integer id);
+	
 	public List<Level> findAll();
 	
 	public void delete(Level level);

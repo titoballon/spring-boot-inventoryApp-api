@@ -33,6 +33,8 @@ public class PermissionServiceImpl implements PermissionService{
 	@Override
 	public Permission findById(Integer id) {
 		// TODO Auto-generated method stub
+		//Permission res = permissionRepository.findById(id).orElse(null);
+		//if (res != null)
 		Optional<Permission> res = permissionRepository.findById(id);
 		if(res.isPresent()) {
 			return res.get();
@@ -78,11 +80,23 @@ public class PermissionServiceImpl implements PermissionService{
 	}
 
 	@Override
-	public List<Permission> findByInventory(String inventory) {
+	public List<Permission> findByInventoryName(String inventory) {
 		// TODO Auto-generated method stub
-		List<Permission> permissions = permissionRepository.findByInventoryInventory(inventory);
+		List<Permission> permissions = permissionRepository.findByInventoryName(inventory);
 		if(permissions.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "No permissions found");
 		return permissions;
+	}
+
+	@Override
+	public Permission getOne(Integer id) {
+		// TODO Auto-generated method stub
+		return permissionRepository.getOne(id);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		permissionRepository.deleteById(id);
 	}
 }
