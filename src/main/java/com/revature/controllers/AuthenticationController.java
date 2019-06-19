@@ -3,6 +3,8 @@ package com.revature.controllers;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +25,7 @@ import com.revature.services.UserService;
 @RestController
 public class AuthenticationController {
 	
-	
+	 
 	private jwtTokenProvider tokenProvider;
 	
 	
@@ -52,6 +56,11 @@ public class AuthenticationController {
 		user.setToken(tokenProvider.generateToken(authenticationToken));
 		
 		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
+	@PostMapping("api/user/register")
+	@CrossOrigin(origins = "http://localhost:3000")
+	public User registerUser(@Valid @RequestBody User user) {
+		return userService.save(user);
 	}
 
 }

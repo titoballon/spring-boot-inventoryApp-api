@@ -43,11 +43,11 @@ public class Area {
 		this.id = id;
 	}
 
-	public String getArea() {
+	public String getName() {
 		return name;
 	}
 
-	public void setArea(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

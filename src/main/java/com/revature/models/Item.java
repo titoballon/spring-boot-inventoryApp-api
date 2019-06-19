@@ -40,11 +40,11 @@ public class Item {
 		this.id = id;
 	}
 
-	public String getItem() {
+	public String getName() {
 		return name;
 	}
 
-	public void setItem(String item) {
+	public void setName(String item) {
 		this.name = item;
 	}
 

@@ -20,7 +20,6 @@ import com.revature.models.User;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	
@@ -41,16 +40,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http	.cors().disable()
 				.authorizeRequests()
 				.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-				.antMatchers("/api/*").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/api/*").permitAll().anyRequest().not().authenticated()
+				.antMatchers("/users").authenticated().anyRequest().authenticated()
 				.and()
 					.httpBasic()
 				.and()
-				.addFilterBefore(new jwtAuthorizationFilter(authenticationManager(), tokenProvider),BasicAuthenticationFilter.class)
-				.sessionManagement()
-	            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+					.addFilterBefore(new jwtAuthorizationFilter(authenticationManager(), tokenProvider),BasicAuthenticationFilter.class)
+					.sessionManagement()
+					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 					.csrf().disable();
+		
+		
 	}
 	
 	

@@ -68,8 +68,10 @@ public class InventoryServiceImpl implements InventoryService{
 
 	@Override
 	public List<Inventory> findInventoryByUserId(Integer userId) {
-		return this.permissionRepository.findByUserId(userId).stream()
-				.map(item->item.getInventory())
-				.collect(Collectors.toList());
+		List<Inventory> listInventory = this.permissionRepository.findByUserId(userId).stream()
+											.map((item)->item.getInventory())
+											.collect(Collectors.toList());
+		System.out.println(listInventory);
+		return listInventory;
 	}	
 }

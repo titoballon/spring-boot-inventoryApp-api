@@ -38,11 +38,11 @@ public class Inventory {
 		this.id = id;
 	}
 
-	public String getInventory() {
+	public String getName() {
 		return name;
 	}
 
-	public void setInventory(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
