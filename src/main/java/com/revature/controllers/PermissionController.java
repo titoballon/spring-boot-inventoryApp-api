@@ -33,45 +33,29 @@ public class PermissionController {
 		this.permissionService = ps;
 	}
 	
-	@GetMapping
-	public List<Permission> findAll(){
-		return permissionService.findAll();
-	}
-	
-	@GetMapping("username/{username}")
-	public List<Permission> findByUsername(@PathVariable String username) {
-		return permissionService.findByUsername(username);
-	}
-	
-	@GetMapping("inventory/{inventory}")
-	public List<Permission> findByInventory(@PathVariable String inventory) {
-		return permissionService.findByInventory(inventory);
-	}
-	
 	@GetMapping("level/{level}")
 	public List<Permission> findByLevel(@PathVariable String level) {
 		return permissionService.findByLevel(level);
 	}
 	
-	@GetMapping("{id}")
-	public Permission findById(@PathVariable Integer id) {
-		return permissionService.findById(id);
+	@GetMapping("{permissionId}")
+	public Permission findById(@PathVariable Integer permissionId) {
+		return permissionService.findById(permissionId);
 	}
 	
-	@GetMapping("user/{id}")
-	public List<Permission> findByUserId(@PathVariable Integer id) {
-		return permissionService.findByUserId(id);
+	@GetMapping("user/{userId}")
+	public List<Permission> findByUserId(@PathVariable Integer userId) {
+		return permissionService.findByUserId(userId);
 	}
 	
-
 	@PostMapping
 	public Permission save(@Valid @RequestBody Permission permission) {
 		return permissionService.save(permission);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Permission permission) {
-		permissionService.delete(permission);
+	@DeleteMapping("{permissionId}")
+	public void delete(@PathVariable Integer permissionId) {
+		permissionService.delete(permissionId);
 	}
 	
 	@PatchMapping

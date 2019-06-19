@@ -16,7 +16,7 @@ public class Area {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String area;
+	private String name;
 	
 	private String description;
 	
@@ -29,9 +29,9 @@ public class Area {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Area(String area, String description) {
+	public Area(String name, String description) {
 		super();
-		this.area = area;
+		this.name = name;
 		this.description = description;
 	}
 
@@ -44,11 +44,11 @@ public class Area {
 	}
 
 	public String getArea() {
-		return area;
+		return name;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setArea(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -71,7 +71,7 @@ public class Area {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((area == null) ? 0 : area.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((inventory == null) ? 0 : inventory.hashCode());
@@ -87,10 +87,10 @@ public class Area {
 		if (getClass() != obj.getClass())
 			return false;
 		Area other = (Area) obj;
-		if (area == null) {
-			if (other.area != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!area.equals(other.area))
+		} else if (!name.equals(other.name))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -109,6 +109,6 @@ public class Area {
 
 	@Override
 	public String toString() {
-		return "Area [id=" + id + ", area=" + area + ", description=" + description + ", inventory=" + inventory + "]";
+		return "Area [id=" + id + ", area=" + name + ", description=" + description + ", inventory=" + inventory + "]";
 	}
 }

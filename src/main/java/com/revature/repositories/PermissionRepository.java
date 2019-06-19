@@ -10,11 +10,9 @@ public interface PermissionRepository extends JpaRepository<Permission, Integer>
 	
 	public List<Permission> findByUserUsername(String username);
 	
-	public List<Permission> findByInventoryInventory(String inventory);
+	public List<Permission> findByInventoryName(String name);
 	
 	public List<Permission> findByLevelLevel(String level);
-	
-	//public Permission updatePermission(Permission permission);
 	
 	public List<Permission> findByUserId(Integer id);
 

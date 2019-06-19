@@ -18,7 +18,7 @@ import com.revature.models.Item;
 import com.revature.services.ItemService;
 
 @RestController
-@RequestMapping("inventories/areas/items")
+@RequestMapping("inventories/areas/items/")
 public class ItemController {
 	
 	private ItemService itemService;
@@ -33,39 +33,34 @@ public class ItemController {
 		this.itemService = is;
 	} 
 	
-	@GetMapping
-	public List<Item> findAll(){
-		return itemService.findAll();
+//	@GetMapping
+//	public List<Item> findAll(){
+//		return itemService.findAll();
+//	}
+	
+//	@GetMapping("name/{name}")
+//	public List<Item> findByItem(@PathVariable String name) {
+//		return itemService.findByName(name);
+//	}
+	//list of items by areaId
+	@GetMapping("area/{areaId}")
+	public List<Item> findByAreaId(@PathVariable Integer areaId) {
+		return itemService.findByAreaId(areaId);
 	}
 	
-	@GetMapping("item/{item}")
-	public List<Item> findByItem(@PathVariable String item) {
-		return itemService.findByItem(item);
-	}
-	
-	@GetMapping("area/{area}")
-	public List<Item> findByArea(@PathVariable String area) {
-		return itemService.findByArea(area);
-	}
-	
-	@GetMapping("{id}")
-	public Item findById(@PathVariable Integer id) {
-		return itemService.findById(id);
-	}
-	
-	@GetMapping("areaid/{id}")
-	public List<Item> findByAreaId(@PathVariable Integer id) {
-		return itemService.findByAreaId(id);
-	}
+//	@GetMapping("{id}")
+//	public Item findById(@PathVariable Integer id) {
+//		return itemService.findById(id);
+//	}
 	
 	@PostMapping
 	public Item save(@Valid @RequestBody Item item) {
 		return itemService.save(item);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Item item) {
-		itemService.delete(item);
+	@DeleteMapping("{itemId}")
+	public void delete(@PathVariable Integer itemId) {
+		itemService.delete(itemId);
 	}
 	
 	@PatchMapping

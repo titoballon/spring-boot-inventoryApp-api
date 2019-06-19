@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.revature.exceptions.ApiException;
 
-import io.jsonwebtoken.MalformedJwtException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
@@ -24,8 +23,8 @@ public class ApiExceptionHandler {
 	}
 	
 	//this is to catch all exceptions and don't show anything in 
-	@ExceptionHandler(value= {Throwable.class})
-	public ResponseEntity<Object> catchAll(Throwable e){
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler(value= {Throwable.class})
+//	public ResponseEntity<Object> catchAll(Throwable e){
+//		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//	}
 }

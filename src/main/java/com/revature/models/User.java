@@ -26,6 +26,7 @@ public class User {
 	@JsonIgnore
 	private String password;
 	
+	@Transient
 	@JsonIgnore
 	private String[] roles;
 	
@@ -38,8 +39,9 @@ public class User {
 	public void setToken(String token) {
 		this.token = token;
 	}
+	//roles not yet implemented always return new string Role User 
 	public String[] getRoles() {
-		return roles;
+		return new String[] {"ROLE_USER"};
 	}
 	public void setRoles(String[] roles) {
 		this.roles = roles;

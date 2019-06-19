@@ -8,9 +8,9 @@ import com.revature.models.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 	
-	public List<Item> findByItem(String item);
+	public List<Item> findByName(String name);
 	
-	public List<Item> findByAreaArea(String area);
+	public List<Item> findByAreaName(String area);
 	
 	public List<Item> findByAreaId(Integer id);
 }

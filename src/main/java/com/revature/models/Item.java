@@ -16,7 +16,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String item;
+	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name="area_id")
@@ -29,7 +29,7 @@ public class Item {
 
 	public Item(String item) {
 		super();
-		this.item = item;
+		this.name = item;
 	}
 
 	public int getId() {
@@ -41,11 +41,11 @@ public class Item {
 	}
 
 	public String getItem() {
-		return item;
+		return name;
 	}
 
 	public void setItem(String item) {
-		this.item = item;
+		this.name = item;
 	}
 
 	public Area getArea() {
@@ -62,7 +62,7 @@ public class Item {
 		int result = 1;
 		result = prime * result + ((area == null) ? 0 : area.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((item == null) ? 0 : item.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -82,16 +82,16 @@ public class Item {
 			return false;
 		if (id != other.id)
 			return false;
-		if (item == null) {
-			if (other.item != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!item.equals(other.item))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", item=" + item + ", area=" + area + "]";
+		return "Item [id=" + id + ", item=" + name + ", area=" + area + "]";
 	}	
 }

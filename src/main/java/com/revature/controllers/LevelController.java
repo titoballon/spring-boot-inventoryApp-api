@@ -33,33 +33,33 @@ public class LevelController {
 		this.levelService = ls;
 	}
 	
-	@GetMapping
-	public List<Level> findAll(){
-		return levelService.findAll();
-	}
-	
-	@GetMapping("level/{level}")
-	public List<Level> findByLevel(@PathVariable String level) {
-		return levelService.findByLevel(level);
-	}
-	
-	@GetMapping("{id}")
-	public Level findById(@PathVariable Integer id) {
-		return levelService.findById(id);
-	}
-	
-	@PostMapping
-	public Level save(@Valid @RequestBody Level level) {
-		return levelService.save(level);
-	}
-	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Level level) {
-		levelService.delete(level);
-	}
-	
-	@PatchMapping
-	public Level updateArea(@Valid @RequestBody Level level) {
-		return levelService.save(level);		
-	}
+//	@GetMapping
+//	public List<Level> findAll(){
+//		return levelService.findAll();
+//	}
+//	
+//	@GetMapping("level/{level}")
+//	public List<Level> findByLevel(@PathVariable String level) {
+//		return levelService.findByLevel(level);
+//	}
+//	
+//	@GetMapping("{id}")
+//	public Level findById(@PathVariable Integer id) {
+//		return levelService.findById(id);
+//	}
+//	
+//	@PostMapping
+//	public Level save(@Valid @RequestBody Level level) {
+//		return levelService.save(level);
+//	}
+//	
+//	@DeleteMapping
+//	public void delete(@Valid @RequestBody Level level) {
+//		levelService.delete(level);
+//	}
+//	
+//	@PatchMapping
+//	public Level updateArea(@Valid @RequestBody Level level) {
+//		return levelService.save(level);		
+//	}
 }

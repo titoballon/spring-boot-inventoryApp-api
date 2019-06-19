@@ -8,9 +8,9 @@ import com.revature.models.Area;
 
 public interface AreaRepository extends JpaRepository<Area, Integer>{
 	
-	public List<Area> findByArea(String area);
+	public List<Area> findByName(String area);
 	
-	public List<Area> findByInventoryInventory(String inventory);
+	public List<Area> findByInventoryName(String name);
 	
 	public List<Area> findByInventoryId(Integer id);
 }

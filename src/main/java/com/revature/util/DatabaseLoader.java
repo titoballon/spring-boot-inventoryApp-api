@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 
 @Component
 public class DatabaseLoader implements ApplicationRunner{
@@ -24,7 +22,7 @@ public class DatabaseLoader implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 			
-		//userdao.save(new User("hermes","pass","my email","ernesto","ballon",new String[] {"ROLE_USER"}));
+		//userdao.save(new User("titoballon2","pass","my email","ernesto","ballon",new String[] {"ROLE_USER"}));
 		
 		System.out.println("this is running");
 	}

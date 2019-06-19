@@ -6,17 +6,15 @@ import com.revature.models.Permission;
 
 public interface PermissionService {
 	
-	public List<Permission> findAll();
 	
 	public Permission findById(Integer id);
 	
 	public Permission save(Permission permission);
 	
-	public void delete(Permission permission);
+	public void delete(Integer permissionId);
 	
-	public List<Permission> findByUsername(String username);
 	
-	public List<Permission> findByInventory(String inventory);
+	public List<Permission> findByInventoryName(String name);
 	
 	public List<Permission> findByLevel(String level);
 	
