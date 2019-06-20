@@ -18,7 +18,7 @@ import com.revature.models.Permission;
 import com.revature.services.PermissionService;
 
 @RestController
-@RequestMapping("permissions")
+@RequestMapping("api/permissions")
 public class PermissionController {
 	
 	private PermissionService permissionService;

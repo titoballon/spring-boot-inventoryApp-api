@@ -18,7 +18,7 @@ import com.revature.models.Inventory;
 import com.revature.services.InventoryService;
 
 @RestController
-@RequestMapping("inventories")
+@RequestMapping("api/inventories")
 public class InventoryController {
 	
 	private InventoryService inventoryService;

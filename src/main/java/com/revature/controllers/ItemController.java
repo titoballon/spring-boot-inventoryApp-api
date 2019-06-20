@@ -18,7 +18,7 @@ import com.revature.models.Item;
 import com.revature.services.ItemService;
 
 @RestController
-@RequestMapping("inventories/areas/items/")
+@RequestMapping("api/inventories/areas/items/")
 public class ItemController {
 	
 	private ItemService itemService;

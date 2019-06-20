@@ -18,7 +18,7 @@ import com.revature.models.Level;
 import com.revature.services.LevelService;
 
 @RestController
-@RequestMapping("levels")
+@RequestMapping("api/levels")
 public class LevelController {
 	
 	private LevelService levelService;

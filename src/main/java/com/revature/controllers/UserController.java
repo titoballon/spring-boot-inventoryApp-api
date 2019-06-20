@@ -18,7 +18,7 @@ import com.revature.models.User;
 import com.revature.services.UserService;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("api/users")
 public class UserController {
 	
 	private UserService userService;

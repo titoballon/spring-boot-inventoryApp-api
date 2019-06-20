@@ -9,4 +9,6 @@ import com.revature.models.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	public List<User> findByUsername(String username);
+	
+	public List<User> findByEmail(String email);
 }

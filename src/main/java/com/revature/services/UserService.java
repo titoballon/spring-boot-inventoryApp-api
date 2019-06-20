@@ -15,4 +15,5 @@ public interface UserService {
 	public User save(User user);
 	
 	public void delete(Integer userId);
+	
 }

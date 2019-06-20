@@ -18,7 +18,7 @@ import com.revature.models.Area;
 import com.revature.services.AreaService;
 
 @RestController
-@RequestMapping("inventories/areas")
+@RequestMapping("api/inventories/areas")
 public class AreaController {
 	
 	private AreaService areaService;
