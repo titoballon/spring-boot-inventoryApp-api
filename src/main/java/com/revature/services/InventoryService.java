@@ -21,4 +21,6 @@ public interface InventoryService {
 	public Inventory save(Inventory inventory);
 	
 	public Inventory getOne(Integer id);
+	
+	public Inventory saveInventoryByUserId(Inventory inventory, Integer userId);
 }

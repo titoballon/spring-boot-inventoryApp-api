@@ -82,4 +82,9 @@ public class InventoryController {
 		return inventoryService.findInventoryByUserId(userId);
 	}
 	
+	@PostMapping("users/{userId}")
+	public Inventory saveInventoryByUserId(@Valid @RequestBody Inventory inventory, @PathVariable Integer userId) {
+		return inventoryService.saveInventoryByUserId(inventory, userId);
+	}
+	
 }
