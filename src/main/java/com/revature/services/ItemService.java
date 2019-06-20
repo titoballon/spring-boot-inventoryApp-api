@@ -18,7 +18,7 @@ public interface ItemService {
 	
 	public Item save(Item item);
 	
-	public void delete(Item item);
+	//public void delete(Item item);
 	
 	public void deleteById(Integer id);
 	

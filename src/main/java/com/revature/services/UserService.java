@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.revature.models.User;
 
@@ -16,7 +17,9 @@ public interface UserService {
 	
 	public User save(User user);
 	
-	public void delete(User user);
+	//public void delete(User user);
 	
 	public void deleteById(Integer id);
+	
+	public Optional<User> getByUsername(String login);
 }

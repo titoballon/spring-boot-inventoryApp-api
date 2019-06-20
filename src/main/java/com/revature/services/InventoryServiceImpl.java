@@ -55,11 +55,11 @@ public class InventoryServiceImpl implements InventoryService{
 		return AllInventories;
 	}
 
-	@Override
-	public void delete(Inventory inventory) {
-		// TODO Auto-generated method stub
-		inventoryRepository.delete(inventory);
-	}
+//	@Override
+//	public void delete(Inventory inventory) {
+//		// TODO Auto-generated method stub
+//		inventoryRepository.delete(inventory);
+//	}
 
 	@Override
 	public Inventory save(Inventory inventory) {

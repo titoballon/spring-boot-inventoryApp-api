@@ -81,13 +81,13 @@ public class PermissionController {
 		return permissionService.save(permission);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Permission permission) {
-		permissionService.delete(permission);
-	}
+//	@DeleteMapping
+//	public void delete(@Valid @RequestBody Permission permission) {
+//		permissionService.delete(permission);
+//	}
 	
 	@DeleteMapping("{permissionId}")
-	public void delete(@PathVariable Integer permissionId) {
+	public void deleteById(@PathVariable Integer permissionId) {
 		permissionService.deleteById(permissionId);
 	}
 	

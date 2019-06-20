@@ -55,13 +55,13 @@ public class InventoryController {
 		return inventoryService.save(inventory);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Inventory inventory) {
-		inventoryService.delete(inventory);
-	}
+//	@DeleteMapping
+//	public void delete(@Valid @RequestBody Inventory inventory) {
+//		inventoryService.delete(inventory);
+//	}
 	
 	@DeleteMapping("{inventoryId}")
-	public void delete(@PathVariable Integer inventoryId) {
+	public void deleteById(@PathVariable Integer inventoryId) {
 		inventoryService.deleteById(inventoryId);
 	}
 	

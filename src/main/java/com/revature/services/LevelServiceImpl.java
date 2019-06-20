@@ -50,10 +50,16 @@ public class LevelServiceImpl implements LevelService{
 		return allLevels;
 	}
 
+//	@Override
+//	public void delete(Level level) {
+//		// TODO Auto-generated method stub
+//		levelRepository.delete(level);
+//	}
+	
 	@Override
-	public void delete(Level level) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
-		levelRepository.delete(level);
+		levelRepository.deleteById(id);
 	}
 
 	@Override

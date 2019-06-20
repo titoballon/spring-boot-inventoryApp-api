@@ -71,11 +71,11 @@ public class AreaServiceImpl implements AreaService{
 		return areaRepository.save(area);
 	}
 
-	@Override
-	public void delete(Area area) {
-		// TODO Auto-generated method stub
-		areaRepository.delete(area);
-	}
+//	@Override
+//	public void delete(Area area) {
+//		// TODO Auto-generated method stub
+//		areaRepository.delete(area);
+//	}
 
 	@Override
 	public Area getOne(Integer id) {

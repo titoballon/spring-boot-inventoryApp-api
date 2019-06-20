@@ -1,12 +1,17 @@
 package com.revature.models;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,7 +22,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	//@UniqueLogin
 	private String username;
+	
 	private String email;
 	private String firstname;
 	private String lastname;
@@ -40,9 +48,9 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User( String username,String password, String email, String firstname, String lastname, 
-			String[] roles) {
-		this();
+	public User( String username,String password, String email, String firstname, String lastname) {
+		Objects.requireNonNull(username);
+        Objects.requireNonNull(password);
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;

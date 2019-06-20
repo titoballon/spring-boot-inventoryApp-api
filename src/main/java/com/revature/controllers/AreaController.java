@@ -64,13 +64,13 @@ public class AreaController {
 		return areaService.save(area);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Area area) {
-		areaService.delete(area);
-	}
+//	@DeleteMapping
+//	public void delete(@Valid @RequestBody Area area) {
+//		areaService.delete(area);
+//	}
 	
 	@DeleteMapping("{areaId}")
-	public void delete(@PathVariable Integer areaId) {
+	public void deleteById(@PathVariable Integer areaId) {
 		areaService.deleteById(areaId);
 	}
 	

@@ -2,6 +2,7 @@ package com.revature.services;
 
 import static java.util.Collections.emptyList;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 	
 	private UserRepository userRepository;
 	
+	//private List<User> registeredUsers = new LinkedList<>();
+	
 	@Autowired
 	public UserServiceImpl(UserRepository ur) {
 		this.userRepository = ur;
@@ -36,6 +39,12 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         //return new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstname(), user.getLastname(), emptyList());
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
     }
+	
+	public Optional<User> getByUsername(String login) {
+        return findAll().stream()
+                .filter(user -> user.getUsername().equals(login))
+                .findFirst();
+    }
 
 	@Override
 	public User findByUsername(String username) {
@@ -44,6 +53,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 //		if(users.isEmpty())
 //			throw new ApiException(HttpStatus.NOT_FOUND, "No users found");
 //		return users;
+
 		return userRepository.findByUsername(username);
 	}
 
@@ -73,11 +83,11 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 		return userRepository.save(user);
 	}
 
-	@Override
-	public void delete(User user) {
-		// TODO Auto-generated method stub
-		userRepository.delete(user);
-	}
+//	@Override
+//	public void delete(User user) {
+//		// TODO Auto-generated method stub
+//		userRepository.delete(user);
+//	}
 
 	@Override
 	public User getOne(Integer id) {

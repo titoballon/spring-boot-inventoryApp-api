@@ -71,11 +71,11 @@ public class ItemServiceImpl implements ItemService{
 		return itemRepository.save(item);
 	}
 
-	@Override
-	public void delete(Item item) {
-		// TODO Auto-generated method stub
-		itemRepository.delete(item);
-	}
+//	@Override
+//	public void delete(Item item) {
+//		// TODO Auto-generated method stub
+//		itemRepository.delete(item);
+//	}
 
 	@Override
 	public Item getOne(Integer id) {

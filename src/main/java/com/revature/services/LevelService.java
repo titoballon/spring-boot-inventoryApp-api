@@ -14,7 +14,9 @@ public interface LevelService {
 	
 	public List<Level> findAll();
 	
-	public void delete(Level level);
+	//public void delete(Level level);
+	
+	public void deleteById(Integer id);
 	
 	public Level save(Level level);
 }

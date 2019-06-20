@@ -16,7 +16,7 @@ public interface InventoryService {
 	
 	public List<Inventory> findInventoryByUserId(Integer userId);
 	
-	public void delete(Inventory inventory);
+	//public void delete(Inventory inventory);
 	
 	public Inventory save(Inventory inventory);
 	

@@ -14,7 +14,7 @@ public interface PermissionService {
 	
 	public Permission save(Permission permission);
 	
-	public void delete(Permission permission);
+	//public void delete(Permission permission);
 	
 	public void deleteById(Integer id);
 	

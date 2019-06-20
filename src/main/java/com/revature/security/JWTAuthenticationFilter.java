@@ -9,14 +9,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.repositories.UserRepository;
+
 //import com.revature.models.User;
 import org.springframework.security.core.userdetails.User;
 
@@ -30,14 +34,19 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	private AuthenticationManager authenticationManager;
 	
-	 public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+	//private UserRepository userRepository;
+	
+	//@Autowired
+	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 	        this.authenticationManager = authenticationManager;
+	        //this.userRepository = userRepository;
 	    }
 	 
 	 @Override
 	    public Authentication attemptAuthentication(HttpServletRequest req,
 	                                                HttpServletResponse res) throws AuthenticationException {
 	        try {
+	        	
 	        	com.revature.models.User creds = new ObjectMapper()
 	                    .readValue(req.getInputStream(), com.revature.models.User.class);
 
@@ -57,11 +66,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	                                            HttpServletResponse res,
 	                                            FilterChain chain,
 	                                            Authentication auth) throws IOException, ServletException {
-		 
+		 //System.out.println(userRepository.findByUsername(((User) auth.getPrincipal()).getUsername()));
+		 //System.out.println(((User) auth.getPrincipal()).getUsername());
 		 String token = JWT.create()
 	                .withSubject(((User) auth.getPrincipal()).getUsername())
 	                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 	                .sign(HMAC512(SECRET.getBytes()));
 	        res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+	        res.addHeader("username", ((User) auth.getPrincipal()).getUsername());
 	    }
 }

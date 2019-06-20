@@ -55,11 +55,11 @@ public class PermissionServiceImpl implements PermissionService{
 		return permissionRepository.save(permission);
 	}
 
-	@Override
-	public void delete(Permission permission) {
-		// TODO Auto-generated method stub
-		permissionRepository.delete(permission);
-	}
+//	@Override
+//	public void delete(Permission permission) {
+//		// TODO Auto-generated method stub
+//		permissionRepository.delete(permission);
+//	}
 
 	@Override
 	public List<Permission> findByLevel(String level) {

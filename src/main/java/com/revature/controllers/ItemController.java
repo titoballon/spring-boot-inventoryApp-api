@@ -70,13 +70,13 @@ public class ItemController {
 		return itemService.save(item);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Item item) {
-		itemService.delete(item);
-	}
+//	@DeleteMapping
+//	public void delete(@Valid @RequestBody Item item) {
+//		itemService.delete(item);
+//	}
 	
 	@DeleteMapping("{itemId}")
-	public void delete(@PathVariable Integer itemId) {
+	public void deleteById(@PathVariable Integer itemId) {
 		itemService.deleteById(itemId);
 	}
 	

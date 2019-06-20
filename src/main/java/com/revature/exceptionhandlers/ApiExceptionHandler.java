@@ -21,8 +21,8 @@ public class ApiExceptionHandler {
 		return new ResponseEntity<Object>("Wrong object type", HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(value= {Throwable.class})
-	public ResponseEntity<Object> catchAll(Throwable e){
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler(value= {Throwable.class})
+//	public ResponseEntity<Object> catchAll(Throwable e){
+//		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//	}
 }

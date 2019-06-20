@@ -55,9 +55,14 @@ public class LevelController {
 		return levelService.save(level);
 	}
 	
-	@DeleteMapping
-	public void delete(@Valid @RequestBody Level level) {
-		levelService.delete(level);
+//	@DeleteMapping
+//	public void delete(@Valid @RequestBody Level level) {
+//		levelService.delete(level);
+//	}
+	
+	@DeleteMapping("{levelId}")
+	public void deleteById(@PathVariable Integer id) {
+		levelService.deleteById(id);
 	}
 	
 	@PatchMapping
