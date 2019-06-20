@@ -19,7 +19,7 @@ import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService{
+public class UserServiceImpl implements UserService{
 	
 	private UserRepository userRepository;
 	
@@ -30,15 +30,14 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 		this.userRepository = ur;
 	}
 	
-	@Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        //return new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstname(), user.getLastname(), emptyList());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
-    }
+//	@Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findByUsername(username);
+//        if (user == null) {
+//            throw new UsernameNotFoundException(username);
+//        }
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
+//    }
 	
 	public Optional<User> getByUsername(String login) {
         return findAll().stream()

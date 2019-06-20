@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.revature.services.UserDetailsServiceImpl;
 import com.revature.services.UserServiceImpl;
 
 import static com.revature.security.SecurityConstants.SIGN_UP_URL;
@@ -22,19 +23,19 @@ import static com.revature.security.SecurityConstants.SIGN_UP_URL;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter{
 	
-	//private UserDetailsServiceImpl userDetailsService;
-	private UserServiceImpl userService;
+	private UserDetailsServiceImpl userDetailsService;
+	//private UserServiceImpl userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//    public WebSecurity(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userDetailsService = userDetailsService;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
-    
-    public WebSecurity(UserServiceImpl userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userService = userService;
+    public WebSecurity(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+    
+//    public WebSecurity(UserServiceImpl userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+//        this.userService = userService;
+//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//    }
     
     
     @Override
@@ -52,7 +53,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         	            "/swagger-ui.html",
         	            "/webjars/**",
         	            "/api/**").permitAll()
-//        		.antMatchers("/api/*").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()               				
                 .anyRequest().authenticated()
                 .and()
@@ -64,14 +64,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-       // http.exceptionHandling().authenticationEntryPoint().(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
         
     }
     
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        //auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
     }
 
   @Bean

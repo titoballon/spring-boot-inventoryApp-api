@@ -1,6 +1,7 @@
 package com.revature.security;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,23 +32,22 @@ import static com.revature.security.SecurityConstants.HEADER_STRING;
 import static com.revature.security.SecurityConstants.SECRET;
 import static com.revature.security.SecurityConstants.TOKEN_PREFIX;
 
+//@Component
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	
 	private AuthenticationManager authenticationManager;
 	
+	//@Autowired
 	//private UserRepository userRepository;
 	
-	//@Autowired
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 	        this.authenticationManager = authenticationManager;
-	        //this.userRepository = userRepository;
 	    }
 	 
 	 @Override
 	    public Authentication attemptAuthentication(HttpServletRequest req,
 	                                                HttpServletResponse res) throws AuthenticationException {
-	        try {
-	        	
+	        try {        	
 	        	com.revature.models.User creds = new ObjectMapper()
 	                    .readValue(req.getInputStream(), com.revature.models.User.class);
 
@@ -66,13 +67,19 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	                                            HttpServletResponse res,
 	                                            FilterChain chain,
 	                                            Authentication auth) throws IOException, ServletException {
-		 //System.out.println(userRepository.findByUsername(((User) auth.getPrincipal()).getUsername()));
-		 //System.out.println(((User) auth.getPrincipal()).getUsername());
+		 //System.out.println(getUser(((User) auth.getPrincipal()).getUsername()));
+		 String username = ((User) auth.getPrincipal()).getUsername();
 		 String token = JWT.create()
 	                .withSubject(((User) auth.getPrincipal()).getUsername())
 	                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 	                .sign(HMAC512(SECRET.getBytes()));
-	        res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
-	        res.addHeader("username", ((User) auth.getPrincipal()).getUsername());
+		 
+		 PrintWriter out = res.getWriter();
+		 res.setContentType("application/json");
+		 res.setCharacterEncoding("UTF-8");
+		 out.print("{\"Authorization\":\"" + TOKEN_PREFIX + token + "\", \"username\":\"" + username +  "\"}");
+		 out.flush();
+        //res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        //res.addHeader("username", ((User) auth.getPrincipal()).getUsername());
 	    }
 }
