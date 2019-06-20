@@ -19,4 +19,6 @@ public interface InventoryService {
 	//find inventory by userId
 	public List<Inventory> findInventoryByUserId(Integer userId);
 	
+	public Inventory saveInventoryByUserId(Inventory inventory, Integer userId);
+	
 }
