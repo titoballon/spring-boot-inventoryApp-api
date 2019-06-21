@@ -36,7 +36,9 @@ public class MultiHttpSecurityConfig {
                     .anyRequest().permitAll().and()
 					.httpBasic();
         }
-    }
+	}
+	
+	
 	@Configuration
 		
 	public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -56,7 +58,8 @@ public class MultiHttpSecurityConfig {
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http	.cors().and().csrf().disable()	
+			http	.cors().and().csrf().disable()
+					.cors().disable()	
 					.antMatcher("/api/**").authorizeRequests()
 					.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 						.anyRequest().authenticated()
@@ -70,7 +73,7 @@ public class MultiHttpSecurityConfig {
 			
 		}
 		@Bean
-	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfigurationSource corsConfigurationSource() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
@@ -80,5 +83,36 @@ public class MultiHttpSecurityConfig {
 		
 		
 
-	}
+	 }
+	// @Configuration
+    // @Order(2)                                                        
+    // public static class AllEndpointsConfigurationAdapter extends WebSecurityConfigurerAdapter {
+	// 	@Autowired
+	// 	private jwtTokenProvider tokenProvider;
+		
+	// 	@Autowired
+	// 	DetailsService userDetailsService;
+
+	// 	@Override
+	// 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	// 		auth.userDetailsService(userDetailsService)
+	// 				.passwordEncoder(User.PASSWORD_ENCODER);
+	// 	}
+    //     protected void configure(HttpSecurity http) throws Exception {
+
+	// 		http
+	// 			.cors().and().csrf().disable()
+	// 			.cors().disable()	
+	// 			.authorizeRequests()
+	// 			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+	// 				.anyRequest().authenticated()
+	// 				.and()
+	// 			.httpBasic()
+	// 			.and()
+	// 					.addFilterBefore(new jwtAuthorizationFilter(authenticationManager(), tokenProvider),BasicAuthenticationFilter.class)
+	// 					.sessionManagement()
+	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	// 	}
+		
+	// }
 }
