@@ -2,6 +2,7 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.converters.AreaItems;
 import com.revature.models.Area;
 
 public interface AreaService {
@@ -25,4 +26,6 @@ public interface AreaService {
 	//public Area findOne(Area area);
 	
 	public Area getOne(Integer id);
+	
+	public List<AreaItems> findAreaItemsByInventoryId(Integer inventoryId);
 }

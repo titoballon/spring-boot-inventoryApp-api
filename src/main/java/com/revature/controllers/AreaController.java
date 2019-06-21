@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.converters.AreaItems;
 import com.revature.models.Area;
 import com.revature.services.AreaService;
 import com.revature.util.NullPropertiesHandler;
@@ -44,10 +45,10 @@ public class AreaController {
 		return areaService.findByName(area);
 	}
 	
-	@GetMapping("inventory/{inventory}")
-	public List<Area> findByInventoryName(@PathVariable String inventory) {
-		return areaService.findByInventoryName(inventory);
-	}
+//	@GetMapping("inventory/{inventory}")
+//	public List<Area> findByInventoryName(@PathVariable String inventory) {
+//		return areaService.findByInventoryName(inventory);
+//	}
 	
 	@GetMapping("{id}")
 	public Area findById(@PathVariable Integer id) {
@@ -84,5 +85,10 @@ public class AreaController {
 	@GetMapping("inventory/{inventoryId}")
 	public List<Area> findByInventoryId(@PathVariable Integer inventoryId) {
 		return areaService.findByInventoryId(inventoryId);
+	}
+	
+	@GetMapping("areaitems/{inventoryId}")
+	public List<AreaItems> findAreaItemsByInventoryId(@PathVariable Integer inventoryId){
+		return areaService.findAreaItemsByInventoryId(inventoryId);
 	}
 }
