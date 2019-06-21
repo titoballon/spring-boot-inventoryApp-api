@@ -2,6 +2,7 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.models.Inventory;
 import com.revature.models.Permission;
 
 public interface PermissionService {
@@ -19,6 +20,8 @@ public interface PermissionService {
 	public List<Permission> findByLevel(String level);
 	
 	public List<Permission> findByUserId(Integer id);
+
+	public Permission sharePermissionToUser(Inventory inventory,String userName);
 	
 	//public Permission updatePermission(Permission permission);
 }
