@@ -8,17 +8,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.revature.exceptions.ApiException;
+import com.revature.models.Inventory;
+import com.revature.models.Level;
 import com.revature.models.Permission;
+import com.revature.models.User;
+import com.revature.repositories.LevelRepository;
 import com.revature.repositories.PermissionRepository;
+import com.revature.repositories.UserRepository;
 
 @Service
 public class PermissionServiceImpl implements PermissionService{
 	
 	private PermissionRepository permissionRepository;
+	private UserRepository userRepository;
+	private LevelRepository levelRepository;
 	
 	@Autowired
-	public PermissionServiceImpl(PermissionRepository pr) {
+	public PermissionServiceImpl(PermissionRepository pr, UserRepository ur, LevelRepository lr) {
 		this.permissionRepository = pr;
+		this.userRepository = ur;
+		this.levelRepository = lr;
 	}
 
 	@Override
@@ -98,5 +107,19 @@ public class PermissionServiceImpl implements PermissionService{
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		permissionRepository.deleteById(id);
+	}
+	
+	@Override
+	public Permission sharePermissionToUser(Inventory inventory, String username) {
+		User user = userRepository.findByUsername(username);
+		if(user == null)
+			throw new ApiException(HttpStatus.NOT_FOUND, "Username not found in database");
+		Level level = levelRepository.findById(1).orElse(null);
+		Permission permission = new Permission();
+		permission.setInventory(inventory);
+		permission.setLevel(level);
+		permission.setUser(user);
+		permissionRepository.save(permission);
+		return permission;
 	}
 }

@@ -87,7 +87,7 @@ public class AreaController {
 		return areaService.findByInventoryId(inventoryId);
 	}
 	
-	@GetMapping("areaitems/{inventoryId}")
+	@GetMapping("{inventoryId}")
 	public List<AreaItems> findAreaItemsByInventoryId(@PathVariable Integer inventoryId){
 		return areaService.findAreaItemsByInventoryId(inventoryId);
 	}

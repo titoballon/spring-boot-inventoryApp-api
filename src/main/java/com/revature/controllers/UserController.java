@@ -50,7 +50,7 @@ public class UserController {
 	
 	@GetMapping("username/{username}")
 	public User findByUsername(@PathVariable String username){
-		//System.out.println(userService.getByUsername(username));
+		//System.out.println(userService.getByUsername(username));		
 		return userService.findByUsername(username);
 	}
 	
