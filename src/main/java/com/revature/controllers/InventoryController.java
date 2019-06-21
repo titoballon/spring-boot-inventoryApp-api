@@ -59,7 +59,7 @@ public class InventoryController {
 	}
 	
 	@PatchMapping
-	public Inventory updateArea(@Valid @RequestBody Inventory inventory) {
+	public Inventory updateInventory(@Valid @RequestBody Inventory inventory) {
 		return inventoryService.save(inventory);		
 	}
 	
@@ -72,6 +72,5 @@ public class InventoryController {
 	public Inventory saveInventoryByUserId(@Valid @RequestBody Inventory inventory, @PathVariable Integer userId) {
 		
 		return inventoryService.saveInventoryByUserId(inventory, userId);
-	}
-	
+	}	
 }

@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.revature.converters.AreaItems;
+import com.revature.converters.ItemShort;
 import com.revature.exceptions.ApiException;
+import com.revature.models.Area;
 import com.revature.models.Inventory;
 import com.revature.models.Level;
 import com.revature.models.Permission;
 import com.revature.models.User;
+import com.revature.models.Item;
+import com.revature.repositories.AreaRepository;
 import com.revature.repositories.InventoryRepository;
+import com.revature.repositories.ItemRepository;
 import com.revature.repositories.LevelRepository;
 import com.revature.repositories.PermissionRepository;
 import com.revature.repositories.UserRepository;
@@ -25,13 +31,18 @@ public class InventoryServiceImpl implements InventoryService{
 	private PermissionRepository permissionRepository;
 	private UserRepository userRepository;
 	private LevelRepository levelRepository;
+	private AreaRepository areaRepository;
+	private ItemRepository itemRepository;
 
 	@Autowired
-	public InventoryServiceImpl(InventoryRepository ir,PermissionRepository pr, UserRepository ur, LevelRepository lr) {
+	public InventoryServiceImpl(InventoryRepository ir,PermissionRepository pr, UserRepository ur, LevelRepository lr, 
+			AreaRepository ar, ItemRepository tr) {
 		this.inventoryRepository = ir;
 		this.permissionRepository = pr;
 		this.userRepository = ur;
 		this.levelRepository = lr;
+		this.areaRepository = ar;
+		this.itemRepository = tr;
 	}
 
 	@Override
@@ -98,5 +109,5 @@ public class InventoryServiceImpl implements InventoryService{
 		newPermission.setLevel(level);
 		permissionRepository.save(newPermission);
 		return newInventory;
-	}	
+	}
 }

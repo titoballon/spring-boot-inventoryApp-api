@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.converters.AreaItems;
 import com.revature.models.Area;
 import com.revature.services.AreaService;
 
@@ -71,5 +72,10 @@ public class AreaController {
 	@PatchMapping
 	public Area updateArea(@Valid @RequestBody Area area) {
 		return areaService.save(area);	
+	}
+	
+	@GetMapping("{inventoryId}")
+	public List<AreaItems> findAreaItemsByInventoryId(@PathVariable Integer inventoryId){
+		return areaService.findAreaItemsByInventoryId(inventoryId);
 	}
 }
