@@ -87,6 +87,7 @@ public class PermissionServiceImpl implements PermissionService{
 
 	@Override
 	public Permission sharePermissionToUser(Inventory inventory, String userName) {
+		//TO DO: check if the user already has permission before adding
 		List<User> user = userRepository.findByUsername(userName);
 		if(user.isEmpty())
 			throw new ApiException(HttpStatus.NOT_FOUND, "Username not found in database");

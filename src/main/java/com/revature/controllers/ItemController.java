@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Area;
 import com.revature.models.Item;
 import com.revature.services.ItemService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
 @RequestMapping("api/inventories/areas/items/")
@@ -59,12 +63,15 @@ public class ItemController {
 	}
 	
 	@DeleteMapping("{itemId}")
-	public void delete(@PathVariable Integer itemId) {
+	public ResponseEntity delete(@PathVariable Integer itemId) {
 		itemService.delete(itemId);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@PatchMapping
-	public Item updateItem(@Valid @RequestBody Item item) {
-		return itemService.save(item);		
+	public ResponseEntity<Item> updateItem(@Valid @RequestBody Item item) {
+		Item existingItem = itemService.getOne(item.getId());
+		NullPropertiesHandler.myCopyProperties(item, existingItem);
+		return new ResponseEntity<Item>(itemService.save(existingItem),HttpStatus.OK);
 	}
 }

@@ -68,4 +68,10 @@ public class ItemServiceImpl implements ItemService{
 		itemRepository.deleteById(itemId);
 	}
 
+	@Override
+	public Item getOne(Integer id) {
+		// TODO Auto-generated method stub
+		return itemRepository.getOne(id);
+	}
+
 }

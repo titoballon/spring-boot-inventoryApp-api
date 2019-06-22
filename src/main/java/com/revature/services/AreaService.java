@@ -15,6 +15,8 @@ public interface AreaService {
 	
 	public Area findById(Integer id);
 	
+	public Area getOne(Integer id);
+	
 	public Area save(Area area);
 	
 	public void delete(Integer areaId);

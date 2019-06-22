@@ -111,4 +111,10 @@ public class AreaServiceImpl implements AreaService{
 			
 		return areaItemsList;		
 	}
+
+	@Override
+	public Area getOne(Integer id) {
+		// TODO Auto-generated method stub
+		return areaRepository.getOne(id);
+	}
 }

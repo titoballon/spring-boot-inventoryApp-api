@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.converters.AreaItems;
 import com.revature.models.Area;
+import com.revature.models.Permission;
 import com.revature.services.AreaService;
+import com.revature.util.NullPropertiesHandler;
 
 @RestController
 @RequestMapping("api/inventories/areas")
@@ -65,13 +69,16 @@ public class AreaController {
 	}
 	
 	@DeleteMapping("{areaId}")
-	public void delete(@PathVariable Integer areaId) {
+	public ResponseEntity delete(@PathVariable Integer areaId) {
 		areaService.delete(areaId);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@PatchMapping
-	public Area updateArea(@Valid @RequestBody Area area) {
-		return areaService.save(area);	
+	public ResponseEntity<Area> updateArea(@Valid @RequestBody Area area) {
+		Area existingArea = areaService.getOne(area.getId());
+		NullPropertiesHandler.myCopyProperties(area, existingArea);
+		return new ResponseEntity<Area>(areaService.save(existingArea),HttpStatus.OK);
 	}
 	
 	@GetMapping("{inventoryId}")

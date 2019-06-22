@@ -57,8 +57,9 @@ public class PermissionController {
 	}
 	
 	@DeleteMapping("{permissionId}")
-	public void delete(@PathVariable Integer permissionId) {
+	public ResponseEntity delete(@PathVariable Integer permissionId) {
 		permissionService.delete(permissionId);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@PatchMapping
