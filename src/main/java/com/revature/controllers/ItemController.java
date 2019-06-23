@@ -22,7 +22,7 @@ import com.revature.services.ItemService;
 import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("inventories/areas/items/")
+@RequestMapping("api/inventories/areas/items/")
 public class ItemController {
 	
 	private ItemService itemService;

@@ -23,7 +23,7 @@ import com.revature.services.PermissionService;
 import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("permissions")
+@RequestMapping("api/permissions")
 public class PermissionController {
 	
 	private PermissionService permissionService;

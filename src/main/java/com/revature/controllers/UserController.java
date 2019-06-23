@@ -25,7 +25,7 @@ import com.revature.services.UserService;
 import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("api/users")
 public class UserController {
 	
 	private UserService userService;

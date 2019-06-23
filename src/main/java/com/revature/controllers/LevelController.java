@@ -22,7 +22,7 @@ import com.revature.services.LevelService;
 import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("levels")
+@RequestMapping("api/levels")
 public class LevelController {
 	
 	private LevelService levelService;

@@ -114,6 +114,13 @@ public class PermissionServiceImpl implements PermissionService{
 		User user = userRepository.findByUsername(username);
 		if(user == null)
 			throw new ApiException(HttpStatus.NOT_FOUND, "Username not found in database");
+		
+		List<Permission> perm = permissionRepository.findByInventoryAndUser(inventory, user);
+		System.out.println(perm);	
+
+		if(!perm.isEmpty())
+			throw new ApiException(HttpStatus.BAD_REQUEST, "User already has permission");
+		
 		Level level = levelRepository.findById(1).orElse(null);
 		Permission permission = new Permission();
 		permission.setInventory(inventory);

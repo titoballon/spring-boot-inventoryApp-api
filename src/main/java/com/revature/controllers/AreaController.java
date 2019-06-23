@@ -22,7 +22,7 @@ import com.revature.services.AreaService;
 import com.revature.util.NullPropertiesHandler;
 
 @RestController
-@RequestMapping("inventories/areas")
+@RequestMapping("api/inventories/areas")
 public class AreaController {
 	
 	private AreaService areaService;
