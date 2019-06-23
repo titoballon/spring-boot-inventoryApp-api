@@ -12,8 +12,7 @@ public interface PermissionService {
 	
 	public Permission save(Permission permission);
 	
-	public void delete(Integer permissionId);
-	
+	public void delete(Integer permissionId);	
 	
 	public List<Permission> findByInventoryName(String name);
 	
@@ -24,4 +23,6 @@ public interface PermissionService {
 	public Permission sharePermissionToUser(Inventory inventory,String userName);
 	
 	//public Permission updatePermission(Permission permission);
+	
+	//public List<Permission> findByInventory(Inventory inventory);
 }
