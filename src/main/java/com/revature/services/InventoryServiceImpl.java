@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.revature.converters.InventoryLevel;
 import com.revature.exceptions.ApiException;
 import com.revature.models.Inventory;
 import com.revature.models.Level;
@@ -90,11 +91,25 @@ public class InventoryServiceImpl implements InventoryService{
 	}
 
 	@Override
-	public List<Inventory> findInventoryByUserId(Integer userId) {
+	public List<InventoryLevel> findInventoryByUserId(Integer userId) {
 		// TODO Auto-generated method stub
-		return this.permissionRepository.findByUserId(userId).stream()
-				.map(item->item.getInventory())
-				.collect(Collectors.toList());
+//		return this.permissionRepository.findByUserId(userId).stream()
+//				.map(item->item.getInventory())
+//				.collect(Collectors.toList());
+		
+		List<InventoryLevel> listInventoryLevel = this.permissionRepository.findByUserId(userId).stream()
+				.map(
+						(item)-> {
+							InventoryLevel newInvLevel = new InventoryLevel();
+							newInvLevel.setId(item.getInventory().getId());
+							newInvLevel.setName(item.getInventory().getName());
+							newInvLevel.setDescription(item.getInventory().getDescription());
+							newInvLevel.setLevelId(item.getLevel().getId());
+							return newInvLevel;							
+						})
+				.collect(Collectors.toList());		
+		//System.out.println(listInventory);
+		return listInventoryLevel;
 	}	
 	
 	@Override

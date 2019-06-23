@@ -2,6 +2,7 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.converters.InventoryLevel;
 import com.revature.models.Inventory;
 
 public interface InventoryService {
@@ -14,7 +15,9 @@ public interface InventoryService {
 	
 	public List<Inventory> findAll();
 	
-	public List<Inventory> findInventoryByUserId(Integer userId);
+	//public List<Inventory> findInventoryByUserId(Integer userId);
+	
+	public List<InventoryLevel> findInventoryByUserId(Integer userId);
 	
 	//public void delete(Inventory inventory);
 	

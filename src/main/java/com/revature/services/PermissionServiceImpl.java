@@ -110,7 +110,7 @@ public class PermissionServiceImpl implements PermissionService{
 	}
 	
 	@Override
-	public Permission sharePermissionToUser(Inventory inventory, String username) {
+	public Permission sharePermissionToUser(Inventory inventory, String username, Integer levelId) {
 		User user = userRepository.findByUsername(username);
 		if(user == null)
 			throw new ApiException(HttpStatus.NOT_FOUND, "Username not found in database");
@@ -121,7 +121,7 @@ public class PermissionServiceImpl implements PermissionService{
 		if(!perm.isEmpty())
 			throw new ApiException(HttpStatus.BAD_REQUEST, "User already has permission");
 		
-		Level level = levelRepository.findById(1).orElse(null);
+		Level level = levelRepository.findById(levelId).orElse(null);
 		Permission permission = new Permission();
 		permission.setInventory(inventory);
 		permission.setLevel(level);

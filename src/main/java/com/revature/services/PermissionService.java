@@ -29,5 +29,7 @@ public interface PermissionService {
 	
 	//public Permission updatePermission(Permission permission);
 	
-	public Permission sharePermissionToUser(Inventory inventory,String username);
+	//public Permission sharePermissionToUser(Inventory inventory,String username);
+	
+	public Permission sharePermissionToUser(Inventory inventory,String userName, Integer levelId);
 }
