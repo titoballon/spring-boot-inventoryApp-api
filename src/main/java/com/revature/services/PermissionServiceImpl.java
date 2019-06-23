@@ -122,13 +122,15 @@ public class PermissionServiceImpl implements PermissionService{
 //			throw new ApiException(HttpStatus.BAD_REQUEST, "User already has permission");	
 		Level level = levelRepository.findById(levelId).orElse(null);
 		
-		if(!perm.isEmpty()) {
+		if(!perm.isEmpty()) {			
 			Permission permission = perm.get(0);
+			if (permission.getLevel().getId() > level.getId()) {		
 			permission.setInventory(inventory);
 			permission.setLevel(level);
 			permission.setUser(user);
 			permissionRepository.save(permission);
 			return permission;
+			} else return permission;
 		} else {
 			Permission permission = new Permission();
 			permission.setInventory(inventory);
