@@ -98,11 +98,13 @@ public class PermissionServiceImpl implements PermissionService{
 		
 		if(!perm.isEmpty()) {
 			Permission permission = perm.get(0);
+			if (permission.getLevel().getId() > level.getId()) {		
 			permission.setInventory(inventory);
 			permission.setLevel(level);
 			permission.setUser(user.get(0));
 			permissionRepository.save(permission);
 			return permission;
+			} else return permission;
 		} else {
 			Permission permission = new Permission();
 			permission.setInventory(inventory);
