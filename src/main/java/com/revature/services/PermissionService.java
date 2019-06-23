@@ -20,7 +20,7 @@ public interface PermissionService {
 	
 	public List<Permission> findByUserId(Integer id);
 
-	public Permission sharePermissionToUser(Inventory inventory,String userName);
+	public Permission sharePermissionToUser(Inventory inventory,String userName, Integer levelId);
 	
 	//public Permission updatePermission(Permission permission);
 	

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.revature.converters.AreaItems;
+import com.revature.converters.InventoryLevel;
 import com.revature.converters.ItemShort;
 import com.revature.exceptions.ApiException;
 import com.revature.models.Area;
@@ -87,12 +88,24 @@ public class InventoryServiceImpl implements InventoryService{
 	}
 
 	@Override
-	public List<Inventory> findInventoryByUserId(Integer userId) {
-		List<Inventory> listInventory = this.permissionRepository.findByUserId(userId).stream()
-											.map((item)->item.getInventory())
-											.collect(Collectors.toList());
-		System.out.println(listInventory);
-		return listInventory;
+	public List<InventoryLevel> findInventoryByUserId(Integer userId) {
+//		List<Inventory> listInventory = this.permissionRepository.findByUserId(userId).stream()
+//											.map((item)->item.getInventory())
+//											.collect(Collectors.toList());
+		
+		List<InventoryLevel> listInventoryLevel = this.permissionRepository.findByUserId(userId).stream()
+				.map(
+						(item)-> {
+							InventoryLevel newInvLevel = new InventoryLevel();
+							newInvLevel.setId(item.getInventory().getId());
+							newInvLevel.setName(item.getInventory().getName());
+							newInvLevel.setDescription(item.getInventory().getDescription());
+							newInvLevel.setLevelId(item.getLevel().getId());
+							return newInvLevel;							
+						})
+				.collect(Collectors.toList());		
+		//System.out.println(listInventory);
+		return listInventoryLevel;
 	}
 
 	@Override

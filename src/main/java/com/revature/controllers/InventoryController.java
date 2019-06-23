@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.converters.InventoryLevel;
 import com.revature.models.Inventory;
 import com.revature.services.InventoryService;
 
@@ -69,7 +70,7 @@ public class InventoryController {
 	}
 	
 	@GetMapping("users/{userId}")
-	public List<Inventory> findInventoryByUserId(@PathVariable Integer userId) {
+	public List<InventoryLevel> findInventoryByUserId(@PathVariable Integer userId) {
 		return inventoryService.findInventoryByUserId(userId);
 	}
 	

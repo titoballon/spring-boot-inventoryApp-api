@@ -3,6 +3,7 @@ package com.revature.services;
 import java.util.List;
 
 import com.revature.converters.AreaItems;
+import com.revature.converters.InventoryLevel;
 import com.revature.models.Inventory;
 
 public interface InventoryService {
@@ -18,7 +19,9 @@ public interface InventoryService {
 	public Inventory save(Inventory inventory);
 	
 	//find inventory by userId
-	public List<Inventory> findInventoryByUserId(Integer userId);
+	//public List<Inventory> findInventoryByUserId(Integer userId);
+	
+	public List<InventoryLevel> findInventoryByUserId(Integer userId);
 	
 	public Inventory saveInventoryByUserId(Inventory inventory, Integer userId);
 	

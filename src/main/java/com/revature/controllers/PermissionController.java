@@ -66,10 +66,19 @@ public class PermissionController {
 	public Permission updatePermission(@Valid @RequestBody Permission permission) {
 		return permissionService.save(permission);		
 	}
-	@PostMapping("users/username/{username}")
-	public ResponseEntity<Permission> sharePermissionToUser(@Valid @RequestBody Inventory inventory,@PathVariable String username) {
+	
+//	@PostMapping("users/username/{username}")
+//	public ResponseEntity<Permission> sharePermissionToUser(@Valid @RequestBody Inventory inventory,@PathVariable String username) {
+//		
+//		return new ResponseEntity<Permission>(permissionService.sharePermissionToUser(inventory,username),HttpStatus.OK);
+//				
+//	}
+	
+	@PostMapping("users/username/{username}/level/{levelId}")
+	public ResponseEntity<Permission> sharePermissionToUser(@Valid @RequestBody Inventory inventory,@PathVariable String username,
+								@PathVariable Integer levelId) {
 		
-		return new ResponseEntity<Permission>(permissionService.sharePermissionToUser(inventory,username),HttpStatus.OK);
+		return new ResponseEntity<Permission>(permissionService.sharePermissionToUser(inventory,username,levelId),HttpStatus.OK);
 				
 	}
 }

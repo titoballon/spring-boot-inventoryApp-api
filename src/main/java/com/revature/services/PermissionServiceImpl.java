@@ -86,7 +86,7 @@ public class PermissionServiceImpl implements PermissionService{
 	}
 
 	@Override
-	public Permission sharePermissionToUser(Inventory inventory, String userName) {
+	public Permission sharePermissionToUser(Inventory inventory, String userName, Integer levelId) {
 		//TO DO: check if the user already has permission before adding
 		List<User> user = userRepository.findByUsername(userName);
 		if(user.isEmpty())
@@ -97,7 +97,7 @@ public class PermissionServiceImpl implements PermissionService{
 		
 		if(!perm.isEmpty())
 			throw new ApiException(HttpStatus.BAD_REQUEST, "User already has permission");
-		Level level = levelRepository.findById(1).orElse(null);
+		Level level = levelRepository.findById(levelId).orElse(null);
 		Permission permission = new Permission();
 		permission.setInventory(inventory);
 		permission.setLevel(level);
